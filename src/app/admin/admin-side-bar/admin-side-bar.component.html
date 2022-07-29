@@ -1,0 +1,80 @@
+<div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark h-100">
+  <a routerLink="/admin" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+    <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+    <span class="fs-4 text-white">Admin Panel</span>
+  </a>
+  <hr>
+  <ul class="nav nav-pills flex-column mb-auto navigation">
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        aria-current="page"
+        aria-current="page"
+        routerLink="/admin/skill"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Skills
+      </a>
+    </li>
+    <li>
+      <a
+        class="nav-link text-white"
+        aria-current="page"
+        routerLink="/admin/project"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Projects
+      </a>
+    </li>
+    <li>
+      <a
+        class="nav-link text-white"
+        aria-current="page"
+        routerLink="/admin/experience"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Experience
+      </a>
+    </li>
+    <li>
+      <a
+        class="nav-link text-white"
+        aria-current="page"
+        routerLink="/admin/education"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Educations
+      </a>
+    </li>
+    <li>
+      <a
+        class="nav-link text-white"
+        aria-current="page"
+        routerLink="/admin/blog"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Blog
+      </a>
+    </li>
+    <li>
+      <a
+        class="nav-link text-white"
+        aria-current="page"
+        routerLink="/admin/profile"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Profile
+      </a>
+    </li>
+  </ul>
+  <hr>
+    <a type="button" class="d-flex align-items-center text-decoration-none text-white">
+       <strong>Logout</strong>
+    </a>
+</div>

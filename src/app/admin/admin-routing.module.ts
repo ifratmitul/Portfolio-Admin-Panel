@@ -1,9 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from '../auth/login/login.component';
+import { AdminComponent } from './admin.component';
+import { EducationControllComponent } from './education-controll/education-controll.component';
+import { ExperienceControlComponent } from './experience-control/experience-control.component';
+import { SkillControlComponent } from './skill-control/skill-control.component';
 
 const routes: Routes = [
-  {path: '', component: LoginComponent}
+  {path: '', component: AdminComponent,
+    children: [
+      {path: 'skill', component: SkillControlComponent},
+      {path: 'education', component: EducationControllComponent},
+      {path: 'experience', component: ExperienceControlComponent},
+      {path: '**', component: SkillControlComponent}
+    ]
+}
 ]
 
 @NgModule({
