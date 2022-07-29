@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ErrorComponent } from './error/error.component';
-import { TestComponent } from './test/test.component';
-
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    ErrorComponent,
-    TestComponent
   ],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+    FontAwesomeModule,
+    ReactiveFormsModule
+  ],
+  exports: [FontAwesomeModule, ReactiveFormsModule]
 })
 export class SharedModule { }

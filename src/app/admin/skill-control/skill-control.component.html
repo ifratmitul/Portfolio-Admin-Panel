@@ -1,1 +1,87 @@
-<p>skill-control works!</p>
+<div class="container p-0">
+  <div class="accordion" id="accordionExample">
+    <div
+      class="accordion-item accordion-header p-2 d-flex justify-content-between align-items-center"
+    >
+      <p
+        class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2"
+      >
+        Skill Control Panel
+      </p>
+      <button class="btn btn-md btn-outline-success" (click)="openModal()">
+        <fa-icon [icon]="addIcon"></fa-icon> Add Skill
+      </button>
+    </div>
+  </div>
+
+  <div class="m-4" *ngIf="skillList.length; else emptyMessage">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Logo</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let skill of skillList; let indexOfelement = index">
+          <td>{{ indexOfelement + 1 }}</td>
+          <td>{{ skill.skillName }}</td>
+          <td>
+            <img
+              src="{{ skill.photoUrl }}"
+              class="img-thumbnail skill-logo"
+              alt="logo missing in cloud"
+            />
+          </td>
+          <td>
+            <button
+              class="btn btn-outline-danger"
+              (click)="deleteSkill(skill.id)"
+            >
+              <fa-icon [icon]="deleteIcon"></fa-icon> Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #emptyMessage>
+    <p class="alert alert-light text-center">
+      No skill available, you can add new skill by clicking the button on top
+    </p>
+  </ng-template>
+</div>
+
+<p-dialog
+  header="Add SKill"
+  [(visible)]="modalFlag && skillForm"
+  [modal]="true"
+  [style]="{ width: '40vw' }"
+  [baseZIndex]="10000"
+  [closable]="false"
+>
+  <form [formGroup]="skillForm" (ngSubmit)="addSkill()">
+    <div class="mb-3">
+      <label class="form-label">Email address</label>
+      <input formControlName="skillName" type="text" class="form-control" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Logo</label>
+      <input formControlName="fileSource" class="form-control" type="file"
+      (change)="onFileChange($event)"
+      />
+    </div>
+    <button
+      type="submit"
+      class="btn btn-outline-primary"
+      [disabled]="skillForm.invalid"
+    >
+      Submit
+    </button>
+    <button type="button" class="btn btn-outline-danger" (click)="closeModal()">
+      Close
+    </button>
+  </form>
+</p-dialog>

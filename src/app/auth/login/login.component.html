@@ -1,23 +1,29 @@
-<main class="form-signin w-100 m-auto">
-  <form>
-    <img class="mb-4" src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-
-    <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-      <label for="floatingInput">Email address</label>
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <img src="assets/login.png"
+          class="img-fluid" alt="Sample image">
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <form>
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <label class="form-label">Email address</label>
+            <input type="email"  class="form-control"
+              placeholder="Enter a valid email address" />
+          </div>
+          <!-- Password input -->
+          <div class="form-outline mb-3">
+            <label class="form-label" >Password</label>
+            <input type="password" class="form-control"
+              placeholder="Enter password" />
+          </div>
+          <div class="text-center text-lg-start mt-4 pt-2">
+            <button type="button" class="btn btn-primary">Login <i class="fa-regular fa-lock-keyhole-open"></i></button>
+          </div>
+        </form>
+      </div>
     </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-      <label for="floatingPassword">Password</label>
-    </div>
-
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">© 2017–2022</p>
-  </form>
-</main>
+  </div>
+</section>

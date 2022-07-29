@@ -7,6 +7,8 @@ import { AdminSideBarComponent } from './admin-side-bar/admin-side-bar.component
 import { SkillControlComponent } from './skill-control/skill-control.component';
 import { EducationControllComponent } from './education-controll/education-controll.component';
 import { ExperienceControlComponent } from './experience-control/experience-control.component';
+import { SharedModule } from '../shared/shared.module';
+import { ExternalComponentModule } from '../external-component/external-component.module';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { ExperienceControlComponent } from './experience-control/experience-cont
   imports: [
     CommonModule,
     AuthModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    SharedModule,
+    ExternalComponentModule
   ]
 })
 export class AdminModule { }

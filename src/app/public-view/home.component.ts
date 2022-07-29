@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
   constructor(private publicViewService: PublicViewService) { }
 
   ngOnInit(): void {
-    this.publicViewService.test();
+    // this.publicViewService.test();
   }
 
 }

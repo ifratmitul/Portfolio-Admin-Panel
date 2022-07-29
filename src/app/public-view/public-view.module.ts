@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { PublicViewRoutingModule } from './public-view-routing.module';
+import { CoreModule } from '../core/core.module';
 
 
 
@@ -11,7 +12,8 @@ import { PublicViewRoutingModule } from './public-view-routing.module';
   ],
   imports: [
     CommonModule,
-    PublicViewRoutingModule
+    PublicViewRoutingModule,
+    CoreModule
   ],
   exports: [HomeComponent]
 })

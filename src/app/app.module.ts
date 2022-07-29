@@ -2,11 +2,14 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
-import { HttpClientModule } from '@angular/common/http';
+import { ToastNoAnimationModule } from 'ngx-toastr';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { ErrorInterceptor } from './core/Interceptors/error.interceptor';
+import { LoadingInterceptor } from './core/Interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -17,15 +20,20 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
+    BrowserAnimationsModule,
     SharedModule,
-    FontAwesomeModule,
+    NgxSpinnerModule,
     ToastNoAnimationModule.forRoot({
       timeOut: 10000,
     positionClass: 'toast-bottom-right',
     preventDuplicates: true,
     })
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass:ErrorInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass:LoadingInterceptor, multi: true},
+  ],
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }
