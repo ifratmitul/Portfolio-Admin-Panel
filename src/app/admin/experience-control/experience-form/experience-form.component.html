@@ -1,35 +1,74 @@
 <p-dialog
-  header="Add SKill"
+  header="{{isEditMode ? 'Edit Experience' : 'Create Experience'}}"
   [(visible)]="dialogFlag && experienceForm"
   [modal]="true"
   [style]="{ width: '40vw' }"
   [baseZIndex]="10000"
   [closable]="false"
 >
-  <!-- <form [formGroup]="skillForm" (ngSubmit)="addSkill()">
+  <form
+    *ngIf="experienceForm"
+    [formGroup]="experienceForm!"
+  >
     <div class="mb-3">
-      <label class="form-label">Email address</label>
-      <input formControlName="skillName" type="text" class="form-control" />
+      <label class="form-label">Company</label>
+      <input formControlName="company" type="text" class="form-control" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Position</label>
+      <input formControlName="position" type="text" class="form-control" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Responsibilities</label>
+      <textarea
+        formControlName="responsibilities"
+        class="form-control"
+      ></textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Start Date</label>
+      <p-calendar
+        formControlName="startDate"
+        styleClass="form-control"
+        [showIcon]="true"
+        inputId="icon"
+      ></p-calendar>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">End Date</label>
+      <p-calendar
+        formControlName="endDate"
+        styleClass="form-control"
+        [showIcon]="true"
+        inputId="icon"
+      ></p-calendar>
     </div>
     <div class="mb-3">
       <label class="form-label">Logo</label>
-      <input formControlName="fileSource" class="form-control" type="file"
-      (change)="onFileChange($event)"
+      <input
+        formControlName="PhotoSource"
+        class="form-control"
+        type="file"
+        (change)="onFiledSourceChange($event)"
       />
     </div>
-    <button
+
+    <div class="d-flex justify-content-end flex-row">
+      <button
       type="submit"
-      class="btn btn-outline-primary"
-      [disabled]="skillForm.invalid"
+      (click)="isEditMode ? saveChanges() : onSubmit()"
+      class="btn btn-outline-primary m-1"
+      [disabled]="experienceForm.invalid"
     >
-      Submit
+      {{isEditMode ? "Save Changes" : "Create"}}
     </button>
-    <button type="button" class="btn btn-outline-danger" (click)="closeModal()">
+    <button
+      type="button"
+      class="btn btn-outline-danger m-1"
+      (click)="closeDialog()"
+    >
       Close
     </button>
-  </form> -->
-
-  <button type="button" class="btn btn-outline-danger" (click)="closeDialog()">
-    Close
-  </button>
+    </div>
+  </form>
 </p-dialog>

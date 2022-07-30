@@ -16,7 +16,7 @@
 
   <div class="m-4">
     <div class="d-flex justify-content-around align-self-stretch " *ngIf="experienceList.length; else emptyMessage">
-      <app-experience-card *ngFor="let item of experienceList" [experienceDetails]="item"></app-experience-card>
+      <app-experience-card *ngFor="let item of experienceList" [experienceDetails]="item" (refreshEmitter)="getExperience()"></app-experience-card>
     </div>
     <ng-template #emptyMessage>
       <p class="alert alert-light text-center">
@@ -27,4 +27,4 @@
   </div>
 
 
-  <app-experience-form></app-experience-form>
+  <app-experience-form (refreshEmitter)="getExperience()"></app-experience-form>

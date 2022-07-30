@@ -1,0 +1,52 @@
+<div class="container p-0">
+  <div class="accordion" id="accordionExample">
+    <div
+      class="accordion-item accordion-header p-2 d-flex justify-content-between align-items-center"
+    >
+      <p
+        class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2"
+      >
+        Employee Control Panel
+      </p>
+      <button class="btn btn-md btn-outline-success" (click)="openModal()">
+        <fa-icon [icon]="addIcon"></fa-icon> Add Employee
+      </button>
+    </div>
+  </div>
+
+  <div class="m-4" *ngIf="employees.length; else emptyMessage">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Email</th>
+          <th>Roles</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employees; let indexOfelement = index">
+          <td>{{ indexOfelement + 1 }}</td>
+          <td>{{ employee.email }}</td>
+          <td>{{employee?.roles?.join(',') || 'Basic'}}</td>
+          <td class="d-flex justify-content-around align-self-center">
+            <button
+              class="btn btn-outline-danger"
+              (click)="deleteSkill(employee.id)"
+            >
+              <fa-icon [icon]="deleteIcon"></fa-icon> Delete
+            </button>
+            <button class="btn btn-outline-primary">Change Permission</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #emptyMessage>
+    <p class="alert alert-light text-center">
+      No Employee available, Add new employee by clicking the button on top
+    </p>
+  </ng-template>
+</div>
+
+

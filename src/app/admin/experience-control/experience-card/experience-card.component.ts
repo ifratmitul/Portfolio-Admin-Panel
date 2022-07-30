@@ -10,6 +10,7 @@ import { ExperienceService } from '../experience.service';
 export class ExperienceCardComponent implements OnInit {
 
   @Input() experienceDetails: Experience | null = null;
+  @Output() refreshEmitter = new EventEmitter<boolean>();
   editIcon = editIcon;
   deleteIcon = deleteIcon;
 
@@ -23,6 +24,17 @@ export class ExperienceCardComponent implements OnInit {
 
     if(this.experienceDetails)
       this.expService.setExperienceDataSource(this.experienceDetails);
+  }
+
+  deleteExperience(id:string) {
+    this.expService.deleteExperience(id).subscribe({
+      next: res => {
+        this.refreshEmitter.emit(true);
+      },
+      error: err => {
+
+      }
+    })
   }
 
 }

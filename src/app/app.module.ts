@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ErrorInterceptor } from './core/Interceptors/error.interceptor';
 import { LoadingInterceptor } from './core/Interceptors/loading.interceptor';
+import { TokenInterceptor } from './core/Interceptors/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { LoadingInterceptor } from './core/Interceptors/loading.interceptor';
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass:ErrorInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass:LoadingInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass:TokenInterceptor, multi: true},
   ],
   bootstrap: [AppComponent],
 

@@ -65,6 +65,17 @@
       <a
         class="nav-link text-white"
         aria-current="page"
+        routerLink="/admin/employee"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Employee
+      </a>
+    </li>
+    <li>
+      <a
+        class="nav-link text-white"
+        aria-current="page"
         routerLink="/admin/profile"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
@@ -74,7 +85,8 @@
     </li>
   </ul>
   <hr>
-    <a type="button" class="d-flex align-items-center text-decoration-none text-white">
+    <p class="text-white">{{userInfo?.email}}</p>
+    <a type="button" (click)="logout()" class="d-flex align-items-center text-decoration-none text-white">
        <strong>Logout</strong>
     </a>
 </div>
