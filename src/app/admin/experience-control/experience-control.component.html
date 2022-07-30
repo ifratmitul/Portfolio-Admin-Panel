@@ -1,5 +1,30 @@
 <div class="container p-0">
   <div class="accordion" id="accordionExample">
-    <div class="accordion-item accordion-header p-2">Experience Control Panel</div>
+    <div
+      class="accordion-item accordion-header p-2 d-flex justify-content-between align-items-center"
+    >
+      <p
+        class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2"
+      >
+        Experience Control Panel
+      </p>
+      <button class="btn btn-md btn-outline-success" (click)="openModal()">
+        <fa-icon [icon]="addIcon"></fa-icon> Add Experience
+      </button>
+    </div>
   </div>
-</div>
+
+  <div class="m-4">
+    <div class="d-flex justify-content-around align-self-stretch " *ngIf="experienceList.length; else emptyMessage">
+      <app-experience-card *ngFor="let item of experienceList" [experienceDetails]="item"></app-experience-card>
+    </div>
+    <ng-template #emptyMessage>
+      <p class="alert alert-light text-center">
+        No experience available, you can add experience by clicking the button on top
+      </p>
+    </ng-template>
+  </div>
+  </div>
+
+
+  <app-experience-form></app-experience-form>

@@ -11,9 +11,6 @@ export class AdminComponent implements OnInit {
   constructor(private adminService: AdminService) { }
 
   ngOnInit(): void {
-    console.log("Admin Panel");
-
-    this.adminService.getSkills();
   }
 
 }

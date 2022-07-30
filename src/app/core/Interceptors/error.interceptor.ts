@@ -7,17 +7,17 @@ import {
 } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { BusyService } from '../Services/busy.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
-  constructor(private toastrService: ToastrService) { }
+  constructor(private toastrService: ToastrService, private busyService: BusyService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError(error => {
-        console.log(error.status);
-
+        this.busyService.idle();
         switch (error?.status) {
           case 400:
             this.toastrService.error("Bad Request", error.status);

@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Skill } from 'src/app/shared/Model/Skill';
-import { AdminService } from '../admin.service';
-import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { addIcon, deleteIcon } from 'src/app/shared/Icons';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SkillService } from './skill.service';
 
 @Component({
   selector: 'app-skill-control',
@@ -13,7 +12,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class SkillControlComponent implements OnInit {
 
-  constructor(private adminService: AdminService, private toastrService: ToastrService) { }
+  constructor(private skillService: SkillService, private toastrService: ToastrService) { }
   skillList: Skill[] = [];
   modalFlag: boolean = false;
   skillForm: FormGroup = new FormGroup({
@@ -21,15 +20,15 @@ export class SkillControlComponent implements OnInit {
     photoFile: new FormControl(null, Validators.required),
     fileSource: new FormControl(null, Validators.required)
   });
-  deleteIcon = faTrashCan;
-  addIcon = faPlusCircle;
+  deleteIcon = deleteIcon;
+  addIcon = addIcon;
 
   ngOnInit(): void {
     this.getSkill();
   }
 
   private getSkill(): void {
-    this.adminService.getSkills().subscribe({
+    this.skillService.getSkills().subscribe({
       next: (res: any) => {
         console.log(res);
         this.skillList = [...res];
@@ -56,7 +55,7 @@ export class SkillControlComponent implements OnInit {
     }
 
     console.log(this.skillForm.value);
-    this.adminService.addSkill(this.skillForm.value).subscribe({
+    this.skillService.addSkill(this.skillForm.value).subscribe({
       next: (res:any) => {
         this.getSkill();
         this.toastrService.success(`Successfully added skill : ${this.skillForm?.controls['skillName']?.value}`);
@@ -71,7 +70,7 @@ export class SkillControlComponent implements OnInit {
   }
 
   deleteSkill(id: string) {
-    this.adminService.deleteSkill(id).subscribe({
+    this.skillService.deleteSkill(id).subscribe({
       next: (res: any) => {
         this.getSkill();
       },

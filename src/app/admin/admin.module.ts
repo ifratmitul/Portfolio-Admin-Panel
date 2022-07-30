@@ -9,6 +9,8 @@ import { EducationControllComponent } from './education-controll/education-contr
 import { ExperienceControlComponent } from './experience-control/experience-control.component';
 import { SharedModule } from '../shared/shared.module';
 import { ExternalComponentModule } from '../external-component/external-component.module';
+import { ExperienceCardComponent } from './experience-control/experience-card/experience-card.component';
+import { ExperienceFormComponent } from './experience-control/experience-form/experience-form.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { ExternalComponentModule } from '../external-component/external-componen
     AdminSideBarComponent,
     SkillControlComponent,
     EducationControllComponent,
-    ExperienceControlComponent
+    ExperienceControlComponent,
+    ExperienceCardComponent,
+    ExperienceFormComponent
   ],
   imports: [
     CommonModule,
