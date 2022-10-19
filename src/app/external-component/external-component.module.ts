@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { DialogModule } from 'primeng/dialog';
+import {CalendarModule} from 'primeng/calendar';
 
 @NgModule({
   declarations: [],
   imports: [
-    DialogModule
+    DialogModule,
+    CalendarModule
   ],
-  exports: [DialogModule]
+  exports: [DialogModule, CalendarModule]
 })
 export class ExternalComponentModule { }

@@ -20,7 +20,7 @@ export class ExperienceControlComponent implements OnInit {
     this.getExperience();
   }
 
-  private getExperience() {
+  getExperience() {
     this.expService.getExperienceList().subscribe({
       next: (res:any) => {
         this.experienceList = [...res];
@@ -32,7 +32,7 @@ export class ExperienceControlComponent implements OnInit {
   }
 
   openModal() {
-
+    this.expService.setExperienceDataSource(null);
   }
 
 }

@@ -3,3 +3,40 @@
     <div class="accordion-item accordion-header p-2">Education Control Panel</div>
   </div>
 </div>
+<div class="m-4" *ngIf="schools.length; else emptyMessage">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Logo</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let edu of schools; let indexOfelement = index">
+        <td>{{ indexOfelement + 1 }}</td>
+        <td>{{ edu.institution}}</td>
+        <td>
+          <img
+            src="assets\login.png"
+            class="img-thumbnail skill-logo"
+            alt="logo missing in cloud"
+          />
+        </td>
+        <td>
+          <button
+            class="btn btn-outline-danger"
+          >
+            <fa-icon [icon]="deleteIcon"></fa-icon> Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #emptyMessage>
+  <p class="alert alert-light text-center">
+    No skill available, you can add new skill by clicking the button on top
+  </p>
+</ng-template>

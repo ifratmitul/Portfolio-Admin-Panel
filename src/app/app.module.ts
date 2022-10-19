@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +10,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ErrorInterceptor } from './core/Interceptors/error.interceptor';
 import { LoadingInterceptor } from './core/Interceptors/loading.interceptor';
+import { TokenInterceptor } from './core/Interceptors/token.interceptor';
+import { appInitializer } from './shared/Helper/app.initalizer';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -30,8 +33,10 @@ import { LoadingInterceptor } from './core/Interceptors/loading.interceptor';
     })
   ],
   providers: [
+    { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AuthService] },
     {provide: HTTP_INTERCEPTORS, useClass:ErrorInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass:LoadingInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass:TokenInterceptor, multi: true},
   ],
   bootstrap: [AppComponent],
 

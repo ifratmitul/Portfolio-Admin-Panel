@@ -11,6 +11,8 @@ import { SharedModule } from '../shared/shared.module';
 import { ExternalComponentModule } from '../external-component/external-component.module';
 import { ExperienceCardComponent } from './experience-control/experience-card/experience-card.component';
 import { ExperienceFormComponent } from './experience-control/experience-form/experience-form.component';
+import { EmployeeControlComponent } from './employee-control/employee-control.component';
+import { EducationCardComponent } from './education-controll/education-card/education-card.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { ExperienceFormComponent } from './experience-control/experience-form/ex
     EducationControllComponent,
     ExperienceControlComponent,
     ExperienceCardComponent,
-    ExperienceFormComponent
+    ExperienceFormComponent,
+    EmployeeControlComponent,
+    EducationCardComponent
   ],
   imports: [
     CommonModule,
