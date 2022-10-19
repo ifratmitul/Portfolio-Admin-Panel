@@ -1,13 +1,14 @@
-<div class="card mb-3" style="max-width: 540px;" *ngIf="experienceDetails">
+<div class="card m-2 card-container"  *ngIf="experienceDetails">
   <div class="row g-0">
     <div class="col-md-4">
-      <img src="{{experienceDetails.photoUrl}}" class="img-fluid rounded-start" alt="company logo">
+      <img  src="{{experienceDetails.photoUrl}}" class="img-fluid rounded-start" alt="company logo">
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8 col-sm-12">
       <div class="card-body">
         <h5 class="card-title">{{experienceDetails.company}}</h5>
         <p class="card-subtitle">{{experienceDetails.position}}</p>
-        <p *ngIf="experienceDetails?.responsibilities" class="card-text"><small class="text-muted">{{experienceDetails.responsibilities}}</small></p>
+        <p *ngIf="experienceDetails?.responsibilities" class="card-text">
+          <small class="text-muted">{{experienceDetails.responsibilities.length > 100 ? (experienceDetails?.responsibilities | slice:0:100)+'...' : experienceDetails?.responsibilities}}</small></p>
         <p class="card-text p-1 m-0">Start Date : {{experienceDetails.startDate | date :'longDate'}}</p>
         <p class="card-text p-1 m-0">End Date : {{!experienceDetails.endDate ? "Present" : experienceDetails.endDate | date :'longDate' }}</p>
       </div>

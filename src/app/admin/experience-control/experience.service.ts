@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { dateFormatter } from 'src/app/shared/Helper/dateFormatter';
 import { Experience, ExperiencePayload } from 'src/app/shared/Model/Experience';
 import { environment } from 'src/environments/environment';
 
@@ -31,25 +32,36 @@ export class ExperienceService {
   }
 
   addNewExperience(payload: ExperiencePayload): Observable<any> {
-    console.log(payload.PhotoFile);
-
     const formData = new FormData();
     formData.append("company", payload.company);
     formData.append("position", payload.position);
     formData.append("responsibilities", payload.responsibilities);
-    formData.append("startDate", payload.startDate.toJSON());
+    formData.append("startDate", dateFormatter(payload.startDate).toJSON());
 
     if (payload.PhotoFile)
       formData.append("PhotoFile", payload.PhotoFile);
 
     if(payload.endDate)
-      formData.append("endDate", payload.endDate.toString());
+      formData.append("endDate", dateFormatter(payload.endDate).toString());
 
     return this.http.post(this.baseUrl + "experience", formData);
   }
 
   updateExperience(id: string, payload: any): Observable<any> {
-    return this.http.put(this.baseUrl + `experience/${id}`, payload);
+
+    const formData = new FormData();
+    formData.append("company", payload.company);
+    formData.append("position", payload.position);
+    formData.append("responsibilities", payload.responsibilities);
+    formData.append("startDate", dateFormatter(payload.startDate).toJSON());
+
+    if (payload.PhotoFile)
+      formData.append("PhotoFile", payload.PhotoFile);
+
+    if(payload.endDate)
+      formData.append("endDate", dateFormatter(payload.endDate).toJSON());
+
+    return this.http.put(this.baseUrl + `experience/${id}`, formData);
   }
 
   deleteExperience(id: string): Observable<any> {

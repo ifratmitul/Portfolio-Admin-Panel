@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {faLock } from '@fortawesome/free-solid-svg-icons';
+import { Subscriber, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { UserInfo } from 'src/app/shared/Model/Auth';
 
@@ -8,15 +9,15 @@ import { UserInfo } from 'src/app/shared/Model/Auth';
   templateUrl: './admin-side-bar.component.html',
   styleUrls: ['./admin-side-bar.component.scss']
 })
-export class AdminSideBarComponent implements OnInit {
+export class AdminSideBarComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService) { }
-
   faLock = faLock;
   userInfo : UserInfo | null = null;
+  subscription : Subscription|null = null;
 
   ngOnInit(): void {
-    this.authService.currentUser$.subscribe({
+   this.subscription =  this.authService.currentUser$.subscribe({
       next: (res:UserInfo|null) => {
         console.log(res);
        this.userInfo = res;
@@ -26,6 +27,10 @@ export class AdminSideBarComponent implements OnInit {
 
   logout() {
     this.authService.logOut();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 
 }

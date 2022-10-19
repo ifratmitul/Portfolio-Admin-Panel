@@ -83,6 +83,8 @@ export class ExperienceFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    console.log(this.experienceForm?.value);
+
     this.expService.addNewExperience(this.experienceForm?.value).subscribe({
       next: res => {
         this.refreshEmitter.emit(true);
@@ -94,6 +96,7 @@ export class ExperienceFormComponent implements OnInit, OnDestroy {
   }
 
   saveChanges() {
+    console.log(this.experienceForm?.value);
     this.expService.updateExperience(this.experienceData.id, this.experienceForm?.value).subscribe({
       next: res => {
         this.refreshEmitter.emit();
