@@ -30,6 +30,10 @@ export class EducationControllComponent implements OnInit {
     })
   }
 
+  openModal() : void {
+    this.eduService.setSourceData(false, null);
+  }
+
 
 
 }

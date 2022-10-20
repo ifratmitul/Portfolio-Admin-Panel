@@ -11,3 +11,10 @@ export interface Education {
   priority: number;
   logo: Photo;
 }
+
+
+export interface EducationDataSourcePayload
+{
+  isEditMode: boolean;
+  data: Education | null;
+}

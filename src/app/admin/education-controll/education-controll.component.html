@@ -1,42 +1,34 @@
 <div class="container p-0">
   <div class="accordion" id="accordionExample">
-    <div class="accordion-item accordion-header p-2">Education Control Panel</div>
+    <div
+      class="accordion-item accordion-header p-2 d-flex justify-content-between align-items-center"
+    >
+      <p
+        class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2"
+      >
+        Education Control Panel
+      </p>
+      <button class="btn btn-md btn-outline-success" (click)="openModal()">
+        <fa-icon [icon]="addIcon"></fa-icon> Add Education
+      </button>
+    </div>
   </div>
-</div>
-<div class="m-4" *ngIf="schools.length; else emptyMessage">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>Logo</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let edu of schools; let indexOfelement = index">
-        <td>{{ indexOfelement + 1 }}</td>
-        <td>{{ edu.institution}}</td>
-        <td>
-          <img
-            src="assets\login.png"
-            class="img-thumbnail skill-logo"
-            alt="logo missing in cloud"
-          />
-        </td>
-        <td>
-          <button
-            class="btn btn-outline-danger"
-          >
-            <fa-icon [icon]="deleteIcon"></fa-icon> Delete
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<ng-template #emptyMessage>
-  <p class="alert alert-light text-center">
-    No skill available, you can add new skill by clicking the button on top
-  </p>
-</ng-template>
+
+  <div class="container">
+    <div class="row">
+      <div class="card-container" *ngIf="schools.length; else emptyMessage">
+          <app-education-card
+          class="col-md-6 col-sm-12"
+          [eduDetails]="edu"
+          *ngFor="let edu of schools"></app-education-card>
+      </div>
+      <ng-template #emptyMessage>
+        <p class="alert alert-light text-center">
+          No education available, you can add education info by clicking the button on top
+        </p>
+      </ng-template>
+    </div>
+  </div>
+  </div>
+
+  <app-education-form (refreshEmitter)="getList()"></app-education-form>

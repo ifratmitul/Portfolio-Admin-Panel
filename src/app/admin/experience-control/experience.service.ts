@@ -14,9 +14,6 @@ export class ExperienceService {
   private experienceDataSource = new BehaviorSubject<any>(null);
   $experienceData = this.experienceDataSource.asObservable();
 
-  private refreshDataEmitter = new BehaviorSubject<any>(null);
-  $refreshData = this.refreshDataEmitter.asObservable();
-
   constructor(private http: HttpClient) { }
 
   setExperienceDataSource(experience: Experience | null) {
@@ -42,7 +39,7 @@ export class ExperienceService {
       formData.append("PhotoFile", payload.PhotoFile);
 
     if(payload.endDate)
-      formData.append("endDate", dateFormatter(payload.endDate).toString());
+      formData.append("endDate", dateFormatter(payload.endDate).toJSON());
 
     return this.http.post(this.baseUrl + "experience", formData);
   }

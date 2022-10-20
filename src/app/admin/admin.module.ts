@@ -13,6 +13,7 @@ import { ExperienceCardComponent } from './experience-control/experience-card/ex
 import { ExperienceFormComponent } from './experience-control/experience-form/experience-form.component';
 import { EmployeeControlComponent } from './employee-control/employee-control.component';
 import { EducationCardComponent } from './education-controll/education-card/education-card.component';
+import { EducationFormComponent } from './education-controll/education-form/education-form.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { EducationCardComponent } from './education-controll/education-card/educ
     ExperienceCardComponent,
     ExperienceFormComponent,
     EmployeeControlComponent,
-    EducationCardComponent
+    EducationCardComponent,
+    EducationFormComponent
   ],
   imports: [
     CommonModule,

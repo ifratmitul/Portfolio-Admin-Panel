@@ -80,6 +80,7 @@ export class ExperienceFormComponent implements OnInit, OnDestroy {
     // this.initializeForm();
     this.isEditMode = false;
     this.experienceData = null;
+    this.refreshEmitter.emit(true);
   }
 
   onSubmit() {
@@ -87,7 +88,7 @@ export class ExperienceFormComponent implements OnInit, OnDestroy {
 
     this.expService.addNewExperience(this.experienceForm?.value).subscribe({
       next: res => {
-        this.refreshEmitter.emit(true);
+        this.closeDialog();
       },
       error: err => {
 
@@ -99,7 +100,7 @@ export class ExperienceFormComponent implements OnInit, OnDestroy {
     console.log(this.experienceForm?.value);
     this.expService.updateExperience(this.experienceData.id, this.experienceForm?.value).subscribe({
       next: res => {
-        this.refreshEmitter.emit();
+        this.closeDialog();
       },
       error : err => {
 

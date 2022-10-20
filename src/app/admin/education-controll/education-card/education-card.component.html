@@ -1,7 +1,20 @@
-<div class="card" *ngIf="eduDetails">
-  <div class="card-body">
-    <h5 class="card-title">{{eduDetails.institution}}</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="card m-2 card-container"  *ngIf="eduDetails">
+  <div class="row g-0">
+    <div class="col-md-4 img-container">
+      <img  src="{{eduDetails.logo.url}}" class="img-fluid rounded-start" alt="company logo">
+    </div>
+    <div class="col-md-8 col-sm-12">
+      <div class="card-body">
+        <h5 class="card-title">{{eduDetails.institution}}</h5>
+        <p class="card-text">From {{eduDetails.startDate | date}} - {{eduDetails.endDate | date}}</p>
+        <p class="card-text">Degree : {{eduDetails.degree}}</p>
+        <p class="card-text">Major: {{eduDetails.major}}</p>
+        <p class="card-text">Result: {{eduDetails.result}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer bg-transparent d-flex flex-row justify-content-end ">
+    <button class="btn btn-outline-warning m-1" (click)="detailsEmitter()"> <fa-icon [icon]="editIcon"></fa-icon> Edit</button>
+    <button class="btn btn-outline-danger m-1" (click)="deleteExperience(eduDetails.id)"> <fa-icon [icon]="deleteIcon"></fa-icon> Delete</button>
   </div>
 </div>
