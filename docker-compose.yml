@@ -1,0 +1,9 @@
+services:
+  docker-frontend:
+      build:
+        context: .
+        dockerfile: Dockerfile.dev
+      ports:
+        - '4200:4200'
+      volumes:
+        - './src:/PortfolioAdmin/src'
