@@ -25,7 +25,7 @@ FROM nginx:latest
 ARG WORK_DIR
 COPY --from=builder ${WORK_DIR}/dist/portfolio-admin /usr/share/nginx/html
 
-COPY ./nginx/nginx.conf /etc/nginx/conf.d/default/conf
+COPY ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 
